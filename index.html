@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BoothReady — The Business App Built for Craft Vendors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --cream-dark: #F0EBE1;
+    --green: #2A4A1E;
+    --green-mid: #3D6B2A;
+    --green-light: #EAF0E4;
+    --terra: #C4622D;
+    --terra-light: #F8EDE5;
+    --charcoal: #1C1C1A;
+    --gray: #6B6860;
+    --gray-light: #BAB5AD;
+    --border: #DDD8CE;
+    --white: #FFFFFF;
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--charcoal);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 247, 242, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--green);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+
+  .nav-logo span { color: var(--terra); }
+
+  .nav-cta {
+    background: var(--green);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 22px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .nav-cta:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 100px 5% 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    border: 1px solid #C8DDB8;
+  }
+
+  .hero-label::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green-mid);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: 1.12;
+    color: var(--charcoal);
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--terra);
+  }
+
+  .hero p {
+    font-size: 17px;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 440px;
+    font-weight: 300;
+  }
+
+  .signup-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .signup-form input {
+    flex: 1;
+    min-width: 200px;
+    padding: 14px 18px;
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    background: var(--white);
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .signup-form input:focus { border-color: var(--green); }
+  .signup-form input::placeholder { color: var(--gray-light); }
+
+  .signup-form button {
+    background: var(--terra);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 28px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .signup-form button:hover { background: #A8511F; transform: translateY(-1px); }
+
+  .hero-footnote {
+    font-size: 13px;
+    color: var(--gray-light);
+  }
+
+  /* Hero visual */
+  .hero-visual {
+    position: relative;
+  }
+
+  .hero-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 20px 60px rgba(42, 74, 30, 0.08);
+  }
+
+  .hero-card-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray);
+    margin-bottom: 16px;
+  }
+
+  .hero-card-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+  }
+
+  .profit-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--cream-dark);
+    font-size: 14px;
+  }
+
+  .profit-row:last-of-type { border-bottom: none; }
+  .profit-row .label { color: var(--gray); }
+  .profit-row .value { font-weight: 500; color: var(--charcoal); }
+  .profit-row .value.green { color: var(--green-mid); }
+  .profit-row .value.terra { color: var(--terra); }
+
+  .profit-result {
+    background: var(--green-light);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .profit-result .result-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--green);
+  }
+
+  .profit-result .result-value {
+    font-family: var(--font-display);
+    font-size: 26px;
+    color: var(--green);
+  }
+
+  .floating-badge {
+    position: absolute;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .floating-badge.badge-1 {
+    bottom: -20px;
+    left: -24px;
+  }
+
+  .floating-badge.badge-2 {
+    top: -18px;
+    right: -20px;
+  }
+
+  .badge-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .badge-text strong {
+    display: block;
+    font-weight: 500;
+    color: var(--charcoal);
+    font-size: 13px;
+  }
+
+  .badge-text span {
+    font-size: 11px;
+    color: var(--gray);
+  }
+
+  /* ── SUCCESS STATE ── */
+  .success-msg {
+    display: none;
+    background: var(--green-light);
+    border: 1px solid #C8DDB8;
+    border-radius: 12px;
+    padding: 16px 20px;
+    color: var(--green);
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  /* ── PAIN SECTION ── */
+  .pain {
+    background: var(--green);
+    padding: 80px 5%;
+    text-align: center;
+  }
+
+  .pain-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .pain h2 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--white);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .pain h2 em { color: #A8C98E; font-style: italic; }
+
+  .pain p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── FEATURES ── */
+  .features {
+    padding: 100px 5%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--terra);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--charcoal);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 17px;
+    color: var(--gray);
+    font-weight: 300;
+    max-width: 520px;
+    margin-bottom: 60px;
+    line-height: 1.7;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .feat-category {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .feat-category:hover {
+    box-shadow: 0 12px 40px rgba(42, 74, 30, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .feat-cat-header {
+    padding: 24px 24px 18px;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .feat-cat-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .feat-cat-name {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .feat-cat-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--charcoal);
+    letter-spacing: -0.3px;
+  }
+
+  .feat-list { padding: 8px 0 4px; }
+
+  .feat-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 24px;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .feat-item:last-child { border-bottom: none; }
+
+  .feat-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .feat-text { flex: 1; }
+  .feat-name { font-size: 14px; font-weight: 500; color: var(--charcoal); }
+  .feat-desc { font-size: 12px; color: var(--gray); margin-top: 2px; line-height: 1.5; }
+
+  .feat-tier {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  .tier-free { background: var(--cream-dark); color: var(--gray); }
+  .tier-std { background: var(--green-light); color: var(--green); }
+  .tier-pro { background: var(--terra-light); color: var(--terra); }
+
+  /* Category colors */
+  .cat-inv .feat-cat-icon { background: #EAF0E4; }
+  .cat-inv .feat-cat-name { color: var(--green-mid); }
+  .cat-inv .feat-dot { background: var(--green-mid); }
+
+  .cat-fin .feat-cat-icon { background: #E6EEF8; }
+  .cat-fin .feat-cat-name { color: #2C5F9E; }
+  .cat-fin .feat-dot { background: #3D7AC8; }
+
+  .cat-ops .feat-cat-icon { background: #F8EDE5; }
+  .cat-ops .feat-cat-name { color: #A05020; }
+  .cat-ops .feat-dot { background: #C4622D; }
+
+  .cat-str .feat-cat-icon { background: #EEEAF8; }
+  .cat-str .feat-cat-name { color: #5A44A8; }
+  .cat-str .feat-dot { background: #7B66D4; }
+
+  /* ── PRICING ── */
+  .pricing {
+    background: var(--cream-dark);
+    padding: 100px 5%;
+  }
+
+  .pricing-inner { max-width: 1000px; margin: 0 auto; }
+
+  .pricing-header { margin-bottom: 48px; }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: start;
+  }
+
+  .price-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    transition: box-shadow 0.2s;
+  }
+
+  .price-card:hover { box-shadow: 0 12px 40px rgba(42, 74, 30, 0.08); }
+
+  .price-card.featured {
+    background: var(--green);
+    border-color: var(--green);
+    position: relative;
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--terra);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 14px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .price-tier-name {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray);
+    margin-bottom: 10px;
+  }
+
+  .price-card.featured .price-tier-name { color: rgba(255,255,255,0.6); }
+
+  .price-amount {
+    font-family: var(--font-display);
+    font-size: 42px;
+    color: var(--charcoal);
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .price-card.featured .price-amount { color: var(--white); }
+
+  .price-period {
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 20px;
+  }
+
+  .price-card.featured .price-period { color: rgba(255,255,255,0.6); }
+
+  .price-desc {
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 24px;
+    line-height: 1.6;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .price-card.featured .price-desc {
+    color: rgba(255,255,255,0.7);
+    border-bottom-color: rgba(255,255,255,0.15);
+  }
+
+  .price-features { list-style: none; margin-bottom: 28px; }
+
+  .price-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--charcoal);
+    padding: 6px 0;
+  }
+
+  .price-card.featured .price-features li { color: rgba(255,255,255,0.85); }
+
+  .price-features li::before {
+    content: '✓';
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--green-mid);
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .price-card.featured .price-features li::before { color: #A8C98E; }
+
+  .price-btn {
+    width: 100%;
+    padding: 13px;
+    border-radius: 100px;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--charcoal);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+
+  .price-btn:hover { border-color: var(--green); color: var(--green); }
+
+  .price-card.featured .price-btn {
+    background: var(--white);
+    border-color: var(--white);
+    color: var(--green);
+  }
+
+  .price-card.featured .price-btn:hover { background: var(--green-light); }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    padding: 100px 5%;
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .final-cta h2 {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 4vw, 48px);
+    color: var(--charcoal);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .final-cta h2 em { color: var(--terra); font-style: italic; }
+
+  .final-cta p {
+    font-size: 17px;
+    color: var(--gray);
+    font-weight: 300;
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+
+  .cta-form {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+
+  .cta-form input {
+    flex: 1;
+    min-width: 220px;
+    max-width: 320px;
+    padding: 14px 20px;
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    background: var(--white);
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .cta-form input:focus { border-color: var(--green); }
+  .cta-form input::placeholder { color: var(--gray-light); }
+
+  .cta-form button {
+    background: var(--green);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 28px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .cta-form button:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+  .cta-footnote { font-size: 13px; color: var(--gray-light); }
+
+  .success-cta {
+    display: none;
+    background: var(--green-light);
+    border: 1px solid #C8DDB8;
+    border-radius: 14px;
+    padding: 18px 24px;
+    color: var(--green);
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    padding: 40px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--white);
+  }
+
+  .footer-logo span { color: var(--terra); }
+
+  .footer-tagline {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  /* ── DASHBOARD TEASER ── */
+  .dashboard-teaser {
+    background: #EDD9BE;
+    padding: 100px 5%;
+  }
+
+  .dt-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .dt-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #7A4F2A;
+    margin-bottom: 16px;
+  }
+
+  .dt-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--charcoal);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+
+  .dt-sub {
+    font-size: 17px;
+    color: #7A6252;
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto 52px;
+    line-height: 1.7;
+  }
+
+  .dt-frame {
+    background: #141412;
+    border: 1px solid rgba(120, 80, 40, 0.2);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(100, 60, 20, 0.18);
+    text-align: left;
+  }
+
+  .dt-browser-bar {
+    background: #1E1E1B;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .dt-dots { display: flex; gap: 6px; }
+  .dt-dots span {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+  .dt-dots span:nth-child(1) { background: #FF5F57; }
+  .dt-dots span:nth-child(2) { background: #FEBC2E; }
+  .dt-dots span:nth-child(3) { background: #28C840; }
+
+  .dt-url {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    font-family: var(--font-body);
+  }
+
+  .dt-app {
+    display: block;
+    min-height: 420px;
+  }
+
+  /* Sidebar — removed */
+  .dt-sidebar { display: none; }
+
+  .dt-ne-sub { font-size: 10px; color: rgba(255,255,255,0.4); }
+
+  /* Main content */
+  .dt-main { padding: 20px 24px; }
+
+  .dt-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .dt-greeting { font-size: 15px; font-weight: 500; color: var(--white); }
+  .dt-date { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+  /* Metrics */
+  .dt-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .dt-metric {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 14px;
+  }
+
+  .dt-metric-label { font-size: 11px; color: rgba(255,255,255,0.4); margin-bottom: 6px; }
+  .dt-metric-value { font-family: var(--font-display); font-size: 24px; color: var(--white); margin-bottom: 4px; }
+  .dt-metric-delta { font-size: 11px; }
+  .dt-metric-delta.up { color: #A8C98E; }
+  .dt-metric-delta.neutral { color: rgba(255,255,255,0.35); }
+
+  /* Panels */
+  .dt-panels {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  /* Revenue per product */
+  .dt-rev-list { display: flex; flex-direction: column; gap: 9px; margin-bottom: 12px; }
+  .dt-rev-row { display: flex; align-items: center; gap: 8px; }
+  .dt-rev-label { font-size: 11px; color: rgba(255,255,255,0.55); width: 108px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dt-rev-track { flex: 1; height: 7px; background: rgba(255,255,255,0.07); border-radius: 4px; overflow: hidden; }
+  .dt-rev-fill { height: 100%; background: linear-gradient(90deg, #3D6B2A, #72B84A); border-radius: 4px; }
+  .dt-rev-amount { font-size: 11px; color: rgba(255,255,255,0.5); width: 34px; text-align: right; flex-shrink: 0; }
+  .dt-rev-total { display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.07); font-size: 11px; font-weight: 500; }
+  .dt-rev-total span:first-child { color: rgba(255,255,255,0.35); }
+  .dt-rev-total span:last-child  { color: #A8C98E; }
+
+  /* Production schedule */
+  .dt-sched-list { display: flex; flex-direction: column; gap: 2px; margin-bottom: 10px; }
+  .dt-sched-item { display: flex; align-items: center; gap: 10px; padding: 7px 8px; border-radius: 7px; }
+  .dt-sched-item:has(.active) { background: rgba(196,98,45,0.1); }
+  .dt-sched-dot { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.2); flex-shrink: 0; }
+  .dt-sched-dot.active { background: #C4622D; border-color: #E8956A; box-shadow: 0 0 0 2px rgba(196,98,45,0.25); }
+  .dt-sched-info { flex: 1; min-width: 0; }
+  .dt-sched-name { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.75); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dt-sched-qty  { font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 1px; }
+  .dt-sched-right { flex-shrink: 0; text-align: right; }
+  .dt-sched-dur  { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.65); }
+  .dt-sched-tag  { font-size: 9px; font-weight: 500; padding: 1px 6px; border-radius: 3px; margin-top: 2px; background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.35); display: inline-block; }
+  .dt-sched-tag.active { background: rgba(196,98,45,0.25); color: #E8956A; }
+  .dt-sched-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.07); }
+  .dt-sched-footer-label { display: flex; align-items: center; gap: 5px; font-size: 11px; color: rgba(255,255,255,0.35); }
+  .dt-sched-footer-val { font-size: 11px; font-weight: 500; color: #A8C98E; }
+
+  .dt-panel {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .dt-panel-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 14px;
+  }
+
+  /* Market pipeline */
+  .dt-pipeline-panel { display: flex; flex-direction: column; }
+
+  .dt-market-card {
+    padding: 10px 0 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 2px;
+  }
+
+  .dt-market-card.last { border-bottom: none; padding-bottom: 4px; }
+
+  .dt-mc-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    gap: 8px;
+  }
+
+  .dt-mc-name { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.8); }
+  .dt-mc-date { font-size: 10px; color: rgba(255,255,255,0.32); margin-top: 2px; }
+
+  .dt-mc-badge {
+    font-size: 9px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .stage-ready   { background: rgba(42,74,30,0.5);    color: #A8C98E; }
+  .stage-crafting { background: rgba(196,98,45,0.3);  color: #E8956A; }
+  .stage-applied { background: rgba(123,102,212,0.3); color: #C0B0F0; }
+
+  /* Pipeline steps */
+  .dt-mc-pipeline {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .dt-mc-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .dt-mc-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.15);
+    background: transparent;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  .dt-mc-line {
+    position: absolute;
+    top: 3px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .dt-mc-step.done .dt-mc-dot   { background: #3D6B2A; border-color: #A8C98E; }
+  .dt-mc-step.done .dt-mc-line  { background: rgba(61,107,42,0.55); }
+
+  .dt-mc-step.current .dt-mc-dot {
+    background: #C4622D;
+    border-color: #E8956A;
+    box-shadow: 0 0 0 3px rgba(196,98,45,0.22);
+  }
+
+  .dt-mc-step.last .dt-mc-line { display: none; }
+
+  .dt-mc-label {
+    font-size: 9px;
+    color: rgba(255,255,255,0.28);
+    margin-top: 5px;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .dt-mc-step.done .dt-mc-label    { color: rgba(255,255,255,0.42); }
+  .dt-mc-step.current .dt-mc-label { color: #E8956A; font-weight: 500; }
+
+  /* Category nav panel */
+  .dt-nav-panel { flex: 1; }
+
+  .dt-app-nav { display: flex; flex-direction: column; gap: 6px; }
+
+  .dt-app-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 10px 10px;
+    border-radius: 9px;
+    border: 1px solid transparent;
+    cursor: default;
+    transition: background 0.15s;
+  }
+
+  .dt-app-nav-item.active {
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(255,255,255,0.1);
+  }
+
+  .dt-app-nav-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .dt-nav-inv .dt-app-nav-icon { background: rgba(61,107,42,0.35); color: #A8C98E; }
+  .dt-nav-fin .dt-app-nav-icon { background: rgba(56,122,221,0.25); color: #85B7EB; }
+  .dt-nav-ops .dt-app-nav-icon { background: rgba(196,98,45,0.28); color: #E8956A; }
+  .dt-nav-str .dt-app-nav-icon { background: rgba(123,102,212,0.28); color: #C0B0F0; }
+
+  .dt-nav-inv.active .dt-app-nav-name { color: #A8C98E; }
+  .dt-nav-fin .dt-app-nav-name { color: rgba(255,255,255,0.75); }
+  .dt-nav-ops .dt-app-nav-name { color: rgba(255,255,255,0.75); }
+  .dt-nav-str .dt-app-nav-name { color: rgba(255,255,255,0.75); }
+
+  .dt-app-nav-text { flex: 1; min-width: 0; }
+  .dt-app-nav-name { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.75); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dt-app-nav-sub { font-size: 10px; color: rgba(255,255,255,0.32); margin-top: 1px; }
+  .dt-app-nav-arrow { font-size: 16px; color: rgba(255,255,255,0.2); flex-shrink: 0; line-height: 1; }
+
+  /* Alert */
+  .dt-alert {
+    background: rgba(196,98,45,0.15);
+    border: 1px solid rgba(196,98,45,0.3);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .dt-alert-icon { font-size: 14px; margin-top: 1px; }
+
+  .dt-alert-text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+  }
+
+  .dt-alert-text strong { display: block; color: #E8956A; font-size: 13px; margin-bottom: 2px; }
+
+  .dt-coming-soon {
+    margin-top: 28px;
+    font-size: 13px;
+    color: #A08060;
+  }
+
+  @media (max-width: 900px) {
+    .dt-app { grid-template-columns: 1fr; }
+    .dt-sidebar { display: none; }
+    .dt-metrics { grid-template-columns: repeat(2, 1fr); }
+    .dt-panels { grid-template-columns: 1fr; }
+    .dt-right-col { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; gap: 48px; padding: 60px 5% 60px; }
+    .hero-visual { display: none; }
+    .features-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .price-card.featured { order: -1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Booth<span>Ready</span></a>
+  <a href="#signup" class="nav-cta">Get early access</a>
+</nav>
+
+<!-- HERO -->
+<section style="max-width: 1100px; margin: 0 auto;">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-label">Your craft business partner is almost here</div>
+      <h1>Spend more time creating. <em>We'll handle the rest.</em></h1>
+      <p>BoothReady is the dedicated business partner built for craft vendors — managing your inventory, finances, and market planning so you can protect your creative time and grow with confidence.</p>
+	<form class="signup-form" onsubmit="handleKitSignup(event, 'hero')" >
+  	  <input type="email" id="hero-email" placeholder="Enter your email address" required>
+  	  <button type="submit">Join the waitlist →</button>
+	</form>
+      <div class="success-msg" id="hero-success">You're on the list! We'll be in touch when we launch. 🎉</div>
+      <p class="hero-footnote">Free to join. No credit card needed. Be first when we launch.</p>
+    </div>
+
+    <div class="hero-visual">
+      <div class="floating-badge badge-2">
+        <div class="badge-icon" style="background: #EAF0E4;">📦</div>
+        <div class="badge-text">
+          <strong>Restock alert</strong>
+          <span>Resin running low — 3 products at risk</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-label">Product profit calculator</div>
+        <div class="hero-card-title">Soy Candle — 8oz</div>
+        <div class="profit-row">
+          <span class="label">Materials cost</span>
+          <span class="value terra">— $3.20</span>
+        </div>
+        <div class="profit-row">
+          <span class="label">Packaging</span>
+          <span class="value terra">— $0.85</span>
+        </div>
+        <div class="profit-row">
+          <span class="label">Your time (15 min)</span>
+          <span class="value terra">— $3.75</span>
+        </div>
+        <div class="profit-row">
+          <span class="label">Selling price</span>
+          <span class="value">$18.00</span>
+        </div>
+        <div class="profit-result">
+          <span class="result-label">Your profit per candle</span>
+          <span class="result-value">$10.20</span>
+        </div>
+      </div>
+      <div class="floating-badge badge-1">
+        <div class="badge-icon" style="background: #F8EDE5;">📅</div>
+        <div class="badge-text">
+          <strong>Next market: Saturday</strong>
+          <span>Riverside Farmers Market</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="pain-inner">
+    <h2>You started crafting because you love <em>making things</em> — not running a business.</h2>
+    <p>Most craft vendors spend more time on spreadsheets, guesswork, and last-minute scrambles than on actually creating. BoothReady is the business partner you never had — handling the planning, tracking, and number-crunching so every hour you save on admin is an hour back at your craft table.</p>
+  </div>
+</section>
+
+<!-- DASHBOARD TEASER -->
+<section class="dashboard-teaser">
+  <div class="dt-inner">
+    <div class="dt-label">A look inside</div>
+    <h2 class="dt-title">Your business at a glance — hours saved every week.</h2>
+    <p class="dt-sub">Everything you need to run a healthy craft business, in one simple place. Less time managing, more time making.</p>
+    <div class="dt-frame fade-up">
+      <div class="dt-browser-bar">
+        <div class="dt-dots"><span></span><span></span><span></span></div>
+        <div class="dt-url">app.boothready.co · Dashboard</div>
+      </div>
+      <div class="dt-app">
+        <!-- Main content -->
+        <div class="dt-main">
+          <div class="dt-topbar">
+            <div class="dt-greeting">Good morning, Sarah 👋</div>
+            <div class="dt-date">Week of Apr 28</div>
+          </div>
+          <!-- Metric cards -->
+          <div class="dt-metrics">
+            <div class="dt-metric">
+              <div class="dt-metric-label">Revenue this month</div>
+              <div class="dt-metric-value">$1,847</div>
+              <div class="dt-metric-delta up">↑ 14% vs last month</div>
+            </div>
+            <div class="dt-metric">
+              <div class="dt-metric-label">Items in stock</div>
+              <div class="dt-metric-value">142</div>
+              <div class="dt-metric-delta neutral">Across 8 products</div>
+            </div>
+            <div class="dt-metric">
+              <div class="dt-metric-label">Avg. profit margin</div>
+              <div class="dt-metric-value">64%</div>
+              <div class="dt-metric-delta up">↑ 8pts since repricing</div>
+            </div>
+            <div class="dt-metric">
+              <div class="dt-metric-label">Markets this month</div>
+              <div class="dt-metric-value">3</div>
+              <div class="dt-metric-delta neutral">Next in 4 days</div>
+            </div>
+          </div>
+          <!-- Three-column bottom panels -->
+          <div class="dt-panels">
+
+            <!-- Revenue per product -->
+            <div class="dt-panel">
+              <div class="dt-panel-title">Revenue per product — April</div>
+              <div class="dt-rev-list">
+                <div class="dt-rev-row">
+                  <div class="dt-rev-label">Soy Candle 8oz</div>
+                  <div class="dt-rev-track"><div class="dt-rev-fill" style="width:88%"></div></div>
+                  <div class="dt-rev-amount">$624</div>
+                </div>
+                <div class="dt-rev-row">
+                  <div class="dt-rev-label">Macrame Wall Art</div>
+                  <div class="dt-rev-track"><div class="dt-rev-fill" style="width:65%"></div></div>
+                  <div class="dt-rev-amount">$460</div>
+                </div>
+                <div class="dt-rev-row">
+                  <div class="dt-rev-label">Resin Earrings</div>
+                  <div class="dt-rev-track"><div class="dt-rev-fill" style="width:47%"></div></div>
+                  <div class="dt-rev-amount">$332</div>
+                </div>
+                <div class="dt-rev-row">
+                  <div class="dt-rev-label">Dried Flower Wreath</div>
+                  <div class="dt-rev-track"><div class="dt-rev-fill" style="width:33%"></div></div>
+                  <div class="dt-rev-amount">$228</div>
+                </div>
+                <div class="dt-rev-row">
+                  <div class="dt-rev-label">Beeswax Lip Balm</div>
+                  <div class="dt-rev-track"><div class="dt-rev-fill" style="width:20%"></div></div>
+                  <div class="dt-rev-amount">$140</div>
+                </div>
+              </div>
+              <div class="dt-rev-total">
+                <span>April total</span>
+                <span>$1,784</span>
+              </div>
+            </div>
+
+            <!-- Weekly production schedule -->
+            <div class="dt-panel">
+              <div class="dt-panel-title">This week's production</div>
+              <div class="dt-sched-list">
+
+                <div class="dt-sched-item">
+                  <div class="dt-sched-dot active"></div>
+                  <div class="dt-sched-info">
+                    <div class="dt-sched-name">Soy Candles 8oz</div>
+                    <div class="dt-sched-qty">× 24 units</div>
+                  </div>
+                  <div class="dt-sched-right">
+                    <div class="dt-sched-dur">3h 00m</div>
+                    <div class="dt-sched-tag active">In progress</div>
+                  </div>
+                </div>
+
+                <div class="dt-sched-item">
+                  <div class="dt-sched-dot"></div>
+                  <div class="dt-sched-info">
+                    <div class="dt-sched-name">Resin Earrings</div>
+                    <div class="dt-sched-qty">× 18 pairs</div>
+                  </div>
+                  <div class="dt-sched-right">
+                    <div class="dt-sched-dur">1h 45m</div>
+                    <div class="dt-sched-tag">Tue</div>
+                  </div>
+                </div>
+
+                <div class="dt-sched-item">
+                  <div class="dt-sched-dot"></div>
+                  <div class="dt-sched-info">
+                    <div class="dt-sched-name">Macrame Wall Art</div>
+                    <div class="dt-sched-qty">× 6 pieces</div>
+                  </div>
+                  <div class="dt-sched-right">
+                    <div class="dt-sched-dur">4h 30m</div>
+                    <div class="dt-sched-tag">Wed</div>
+                  </div>
+                </div>
+
+                <div class="dt-sched-item">
+                  <div class="dt-sched-dot"></div>
+                  <div class="dt-sched-info">
+                    <div class="dt-sched-name">Dried Flower Wreath</div>
+                    <div class="dt-sched-qty">× 8 units</div>
+                  </div>
+                  <div class="dt-sched-right">
+                    <div class="dt-sched-dur">2h 00m</div>
+                    <div class="dt-sched-tag">Thu</div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="dt-sched-footer">
+                <div class="dt-sched-footer-label">
+                  <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Est. completion
+                </div>
+                <div class="dt-sched-footer-val">Fri May 2 · 11h 15m</div>
+              </div>
+            </div>
+
+            <!-- Market pipeline -->
+            <div class="dt-panel dt-pipeline-panel">
+              <div class="dt-panel-title">Market pipeline</div>
+
+              <div class="dt-market-card">
+                <div class="dt-mc-top">
+                  <div class="dt-mc-info">
+                    <div class="dt-mc-name">Riverside Farmers Market</div>
+                    <div class="dt-mc-date">Sat, May 3 · 4 days away</div>
+                  </div>
+                  <div class="dt-mc-badge stage-ready">Booth Ready</div>
+                </div>
+                <div class="dt-mc-pipeline">
+                  <div class="dt-mc-step done"><div class="dt-mc-dot"></div><div class="dt-mc-line"></div><div class="dt-mc-label">Applied</div></div>
+                  <div class="dt-mc-step done"><div class="dt-mc-dot"></div><div class="dt-mc-line"></div><div class="dt-mc-label">Crafting</div></div>
+                  <div class="dt-mc-step done"><div class="dt-mc-dot"></div><div class="dt-mc-line"></div><div class="dt-mc-label">Packed</div></div>
+                  <div class="dt-mc-step current"><div class="dt-mc-dot"></div><div class="dt-mc-line"></div><div class="dt-mc-label">Booth Ready</div></div>
+                  <div class="dt-mc-step pending last"><div class="dt-mc-dot"></div><div class="dt-mc-label">Market Day</div></div>
+                </div>
+              </div>
+
+              <div class="dt-market-card">
+                <div class="dt-mc-top">
+                  <div class="dt-mc-info">
+                    <div class="dt-mc-name">Eastside Craft Fair</div>
+                    <div class="dt-mc-date">Sun, May 11 · 12 days away</div>
+                  </div>
+                  <div class="dt-mc-badge stage-crafting">Crafting</div>
+                </div>
+                <div class="dt-mc-pipeline">
+                  <div class="dt-mc-step done"><div class="dt-mc-dot"></div><div class="dt-mc-line"></div><div class="dt-mc-label">Applied</div></div>
+                  <div class="dt-mc-step current"><div class="dt-mc-dot"></div><div class="dt-mc-line"></div><div class="dt-mc-label">Crafting</div></div>
+                  <div class="dt-mc-step pending"><div class="dt-mc-dot"></div><div class="dt-mc-line"></div><div class="dt-mc-label">Packed</div></div>
+                  <div class="dt-mc-step pending"><div class="dt-mc-dot"></div><div class="dt-mc-line"></div><div class="dt-mc-label">Booth Ready</div></div>
+                  <div class="dt-mc-step pending last"><div class="dt-mc-dot"></div><div class="dt-mc-label">Market Day</div></div>
+                </div>
+              </div>
+
+              <div class="dt-market-card last">
+                <div class="dt-mc-top">
+                  <div class="dt-mc-info">
+                    <div class="dt-mc-name">Holiday Market Festival</div>
+                    <div class="dt-mc-date">Sat, Dec 6 · 220 days away</div>
+                  </div>
+                  <div class="dt-mc-badge stage-applied">Applied</div>
+                </div>
+                <div class="dt-mc-pipeline">
+                  <div class="dt-mc-step current"><div class="dt-mc-dot"></div><div class="dt-mc-line"></div><div class="dt-mc-label">Applied</div></div>
+                  <div class="dt-mc-step pending"><div class="dt-mc-dot"></div><div class="dt-mc-line"></div><div class="dt-mc-label">Crafting</div></div>
+                  <div class="dt-mc-step pending"><div class="dt-mc-dot"></div><div class="dt-mc-line"></div><div class="dt-mc-label">Packed</div></div>
+                  <div class="dt-mc-step pending"><div class="dt-mc-dot"></div><div class="dt-mc-line"></div><div class="dt-mc-label">Booth Ready</div></div>
+                  <div class="dt-mc-step pending last"><div class="dt-mc-dot"></div><div class="dt-mc-label">Market Day</div></div>
+                </div>
+              </div>
+
+              <div class="dt-alert" style="margin-top:10px;">
+                <div class="dt-alert-icon">⚠</div>
+                <div class="dt-alert-text">
+                  <strong>Resin running low</strong>
+                  2 products affected — reorder soon
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dt-coming-soon">Coming soon — join the waitlist to be first in.</div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="section-label">What's inside</div>
+  <h2 class="section-title">Your business partner, built for crafters.</h2>
+  <p class="section-sub">Four categories of tools that handle the business side — so every hour you save on admin is an hour back doing what you love.</p>
+
+  <div class="features-grid">
+
+    <!-- Inventory -->
+    <div class="feat-category cat-inv fade-up">
+      <div class="feat-cat-header">
+        <div class="feat-cat-icon">🏺</div>
+        <div class="feat-cat-name">Inventory & Production</div>
+        <div class="feat-cat-title">Know what you have. Make what you need.</div>
+      </div>
+      <div class="feat-list">
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Supply tracker</div>
+            <div class="feat-desc">Always know exactly what raw materials you have on hand.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Finished goods inventory</div>
+            <div class="feat-desc">Track what's ready to sell before every market.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Product recipe builder</div>
+            <div class="feat-desc">Link materials to products — the app tracks costs automatically.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Restock alerts</div>
+            <div class="feat-desc">Get notified before you run out — not after.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Production scheduler</div>
+            <div class="feat-desc">Plan your making schedule around your market calendar.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Financials -->
+    <div class="feat-category cat-fin fade-up" style="transition-delay: 0.1s;">
+      <div class="feat-cat-header">
+        <div class="feat-cat-icon">💰</div>
+        <div class="feat-cat-name">Financials</div>
+        <div class="feat-cat-title">Finally know if you're actually making money.</div>
+      </div>
+      <div class="feat-list">
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Product profit calculator</div>
+            <div class="feat-desc">See your true cost per product and the right price to charge.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Income log</div>
+            <div class="feat-desc">Track cash, card, and online sales in one place.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Expense tracker</div>
+            <div class="feat-desc">Log booth fees, supplies, and travel with simple labels.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Tax prep summary</div>
+            <div class="feat-desc">Export clean financials ready for your accountant — or yourself.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Seasonal cash flow planner</div>
+            <div class="feat-desc">See your slow and busy months mapped out — plan ahead.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Operations -->
+    <div class="feat-category cat-ops fade-up" style="transition-delay: 0.15s;">
+      <div class="feat-cat-header">
+        <div class="feat-cat-icon">🗓️</div>
+        <div class="feat-cat-name">Operations</div>
+        <div class="feat-cat-title">Run your market days without the chaos.</div>
+      </div>
+      <div class="feat-list">
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Market calendar</div>
+            <div class="feat-desc">Schedule your markets and festivals — never double-book.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Event sales log</div>
+            <div class="feat-desc">Record what sold at each event — builds smarter insights over time.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Event prep checklist</div>
+            <div class="feat-desc">A smart checklist that walks you through every pre-market task.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Booth performance tracker</div>
+            <div class="feat-desc">Log revenue and what sold — spot patterns market by market.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Market finder + application</div>
+            <div class="feat-desc">Find and apply to markets — track deadlines without leaving the app.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Strategy -->
+    <div class="feat-category cat-str fade-up" style="transition-delay: 0.2s;">
+      <div class="feat-cat-header">
+        <div class="feat-cat-icon">📈</div>
+        <div class="feat-cat-name">Business Strategy</div>
+        <div class="feat-cat-title">Grow your business with confidence.</div>
+      </div>
+      <div class="feat-list">
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Goal tracker</div>
+            <div class="feat-desc">Set revenue targets and watch your progress all year.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Product performance insights</div>
+            <div class="feat-desc">See which products sell best, at which events, and when.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Smart market recommendations</div>
+            <div class="feat-desc">Based on your sales data, we suggest which events are worth your time.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">Business growth playbook</div>
+            <div class="feat-desc">Plain-language guides on taxes, registering your business, and scaling up.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div class="feat-text">
+            <div class="feat-name">White glove advising</div>
+            <div class="feat-desc">A real human partner to help you make decisions and grow.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="pricing-inner">
+    <div class="pricing-header fade-up">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Start free. Grow when you're ready.</h2>
+      <p class="section-sub">No contracts, no surprises. Cancel any time.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <div class="price-card fade-up">
+        <div class="price-tier-name">Free</div>
+        <div class="price-amount">$0</div>
+        <div class="price-period">forever free</div>
+        <div class="price-desc">The essentials to get you started — no credit card needed.</div>
+        <ul class="price-features">
+          <li>Supply tracker</li>
+          <li>Finished goods inventory</li>
+          <li>Product profit calculator</li>
+          <li>Market calendar</li>
+          <li>Event sales log</li>
+          <li>Goal tracker</li>
+        </ul>
+        <a href="#signup" class="price-btn" style="display:block; text-decoration:none; line-height:1.5; box-sizing:border-box;">Get started free</a>
+      </div>
+
+      <div class="price-card featured fade-up" style="transition-delay: 0.1s;">
+        <div class="featured-badge">Most popular</div>
+        <div class="price-tier-name">Standard</div>
+        <div class="price-amount">$24.99</div>
+        <div class="price-period">per month</div>
+        <div class="price-desc">The full toolkit for serious craft vendors ready to run a real business.</div>
+        <ul class="price-features">
+          <li>Everything in Free</li>
+          <li>Product recipe builder + COGS</li>
+          <li>Restock alerts</li>
+          <li>Income log + expense tracker</li>
+          <li>Tax prep summary export</li>
+          <li>Booth performance tracker</li>
+          <li>Product performance insights</li>
+          <li>Smart market recommendations</li>
+        </ul>
+        <a href="#signup" class="price-btn" style="display:block; text-decoration:none; line-height:1.5; box-sizing:border-box;">Join the waitlist</a>
+      </div>
+
+      <div class="price-card fade-up" style="transition-delay: 0.2s;">
+        <div class="price-tier-name">Pro</div>
+        <div class="price-amount">$49.99</div>
+        <div class="price-period">per month</div>
+        <div class="price-desc">For vendors who want a true business partner — including real human support.</div>
+        <ul class="price-features">
+          <li>Everything in Standard</li>
+          <li>Seasonal cash flow planner</li>
+          <li>Market finder + 1-click apply</li>
+          <li>Business growth playbook</li>
+          <li>Pre-event production planner</li>
+          <li>White glove human advising</li>
+        </ul>
+        <a href="#signup" class="price-btn" style="display:block; text-decoration:none; line-height:1.5; box-sizing:border-box;">Join the waitlist</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="signup">
+  <div class="final-cta fade-up">
+    <div class="section-label">Early access</div>
+    <h2>Get your time back. <em>Start growing.</em></h2>
+    <p>Join crafters on the waitlist who are ready to stop drowning in business tasks and get back to creating. Early members unlock Standard features free at launch.</p>
+    <div class="success-cta" id="cta-success">You're on the list! 🎉 We'll reach out as soon as we launch.</div>
+    <form class="cta-form" onsubmit="handleKitSignup(event, 'cta')">
+      <input type="email" id="cta-email" placeholder="Your email address" required>
+      <button type="submit">Reserve my spot →</button>
+    </form>
+    <p class="cta-footnote">No spam, ever. Unsubscribe any time.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Booth<span>Ready</span></div>
+  <div class="footer-tagline">The business app built for craft vendors.</div>
+  <div class="footer-tagline">© 2025 BoothReady. All rights reserved.</div>
+</footer>
+
+<script>
+  async function handleKitSignup(e, source) {
+  e.preventDefault();
+  const emailId = source === 'hero' ? 'hero-email' : 'cta-email';
+  const successId = source === 'hero' ? 'hero-success' : 'cta-success';
+  const email = document.getElementById(emailId).value;
+  if (!email) return;
+
+  try {
+    const response = await fetch('https://api.convertkit.com/v3/forms/9276483/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        api_key: 'VO5cUvOOkxvtigeh9Ho5rA',
+        email: email
+      })
+    });
+
+    if (response.ok) {
+      e.target.style.display = 'none';
+      document.getElementById(successId).style.display = 'block';
+    } else {
+      alert('Something went wrong — please try again.');
+    }
+  } catch (err) {
+    alert('Something went wrong — please try again.');
+  }
+}
+
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
